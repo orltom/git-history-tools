@@ -19,11 +19,12 @@ from docopt import docopt
 
 
 class Commit:
-    def __init__(self, commit_hash, author, commit_datetime, files=[]):
+    def __init__(self, commit_hash, author, commit_datetime, msg, files=[]):
         self._commit_hash = commit_hash
         self._author = author
         self._datetime = commit_datetime
         self._files = files
+        self._msg = msg
 
     def __str__(self):
         return f"{self._datetime} {self._commit_hash} {self._author}"
@@ -39,6 +40,10 @@ class Commit:
     @property
     def datetime(self) -> str:
         return self._datetime
+
+    @property
+    def msg(self) -> str:
+        return self._msg
 
     @property
     def files(self) -> List[str]:
@@ -64,6 +69,13 @@ class Summary:
                 _paths.add(_path)
         return '\n'.join(_paths)
 
+    def msg(self) -> str:
+        _messages = set()
+        for _c in self._commits:
+            _short_msg = _c.msg.split(" ")[0:1][0].replace(":", "")
+            _messages.add(_short_msg)
+        return '\n'.join(_messages)
+
     def hashes(self) -> str:
         _hashes = set()
         for _c in self._commits:
@@ -83,7 +95,7 @@ class GitUtils:
         _commits = []
         _repo = Repo(rep_path)
         for _c in _repo.iter_commits('master', max_count=300, since=since, after=after):
-            _commit = Commit(_c.hexsha, _c.author, _c.committed_datetime, _c.stats.files)
+            _commit = Commit(_c.hexsha, _c.author, _c.committed_datetime, _c.message, _c.stats.files)
             _commits.append(_commit)
         return _commits
 
@@ -105,8 +117,8 @@ class GitUtils:
 def show_changes_from_yesterday(_path):
     commits = GitUtils.get_commits_from_yesterday(_path)
     changes_by_user = GitUtils.group_by_user(commits)
-    table = [[key, changes_by_user[key].show(), changes_by_user[key].hashes()] for key in changes_by_user]
-    headers = ["Autor", "Modules", "GIT hash"]
+    table = [[key, changes_by_user[key].show(), changes_by_user[key].msg(), changes_by_user[key].hashes()] for key in changes_by_user]
+    headers = ["Autor", "Modules", "Message", "GIT hash"]
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 
 

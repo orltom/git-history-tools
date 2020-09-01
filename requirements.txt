@@ -1,4 +1,3 @@
 tabulate
 gitpython
-tabluate==0.8.7
 docopt
