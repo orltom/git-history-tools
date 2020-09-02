@@ -12,7 +12,6 @@ setuptools.setup(
     version=__version__,
     author="Orlando Tomás",
     author_email="orlando.tomas@hotmail.com",
-    description="Group GIT commits by user and show changes in a compact mode",
     url="https://github.com/orltom/git-history-tools",
     long_description=readme,
     long_description_content_type="text/markdown",
