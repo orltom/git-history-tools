@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""git-history-tool.py
+"""cli.py
 
 Description:
-  Group GIT commits by user and show changes by
+  Group GIT commits by user and show changes in a compact mode
 
 Usage:
-  git-history-tool.py <path> [-b <name>] [-i <regex>] [-d <number>]
+  cli.py <path> [-b <name>] [-i <regex>] [-d <number>]
 
 Options:
   -h --help                     Show this screen.
