@@ -1,4 +1,5 @@
 import setuptools
+from version import __version__
 
 with open("README.md", "r") as fh:
     readme = fh.read()
@@ -8,7 +9,7 @@ with open('LICENSE') as f:
 
 setuptools.setup(
     name="git-history-tools",
-    version="0.0.1",
+    version=__version__,
     author="Orlando Tomás",
     author_email="orlando.tomas@hotmail.com",
     description="Group GIT commits by user and show changes in a compact mode",

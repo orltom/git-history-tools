@@ -15,13 +15,15 @@ Description:
   Group GIT commits by user and show changes in a compact mode
 
 Usage:
-  cli.py <path> [-b <name>] [-i <regex>] [-d <number>]
+  cli.py [-b <name>] [-i <regex>] [-d <number>] [--since date] [--after date] <path>
 
 Options:
   -h --help                     Show this screen.
   -b --branch <name>            GIT branch name [default: master]
   -i --issue <regex>            Regex pattern which correspond the issue ID. [default: ""]
   -d --deep <number>            change file deep [default: 1]
+  --since <date>                Start date: format (%Y-%m-%d). Default is today -1
+  --after <date>                End date: format (%Y-%m-%d). Default is today -2
   <path>                        GIT repository path.
 ```
 
