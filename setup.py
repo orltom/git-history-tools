@@ -13,8 +13,8 @@ setuptools.setup(
     author="Orlando Tomás",
     author_email="orlando.tomas@hotmail.com",
     url="https://github.com/orltom/git-history-tools",
-    long_description=readme,
-    long_description_content_type="text/markdown",
+    # long_description=readme,
+    # long_description_content_type="text/markdown",
     license=license,
     classifiers=[
         "Development Status :: 3 - Alpha",
