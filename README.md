@@ -1,8 +1,11 @@
-![](https://github.com/orltom/git-history-tools/workflows/Ansible%20Ubuntu%20Check/badge.svg)
+![](https://github.com/orltom/git-history-tools/workflows/Python%20package/badge.svg)
 [![MIT License](https://raw.githubusercontent.com/orltom/git-history-tools/master/.github/license.svg?sanitize=true)](https://github.com/orltom/git-history-tools/blob/master/LICENSE)
 
 # git-history-tools
 Command line tool to group commits by user for a specific time window.
+
+## Usage
+To run the program requires python version 3.6 or higher and a few libraries must be installed (see requirements.txt).
 
 ```bash
 >>./cli.py --help
@@ -21,3 +24,8 @@ Options:
   -d --deep <number>            change file deep [default: 1]
   <path>                        GIT repository path.
 ```
+
+## Requirement
+
+## Disclaimer
+This software is provided as source code under an MIT license (see LICENSE)
