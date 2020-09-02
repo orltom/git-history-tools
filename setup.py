@@ -22,4 +22,9 @@ setuptools.setup(
     scripts=['githistory'],
     packages=['src'],
     python_requires='>=3.6',
+    install_requires=[
+        'tabulate',
+        'gitpython',
+        'docopt'
+    ],
 )
