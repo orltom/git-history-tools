@@ -5,13 +5,15 @@ Description:
   Group GIT commits by user and show changes in a compact mode
 
 Usage:
-  cli.py <path> [-b <name>] [-i <regex>] [-d <number>]
+  cli.py [-b <name>] [-i <regex>] [-d <number>] [--since date] [--after date] <path>
 
 Options:
   -h --help                     Show this screen.
   -b --branch <name>            GIT branch name [default: master]
   -i --issue <regex>            Regex pattern which correspond the issue ID. [default: ""]
   -d --deep <number>            change file deep [default: 1]
+  --since <date>                Start date: format (%Y-%m-%d). Default is today -1
+  --after <date>                End date: format (%Y-%m-%d). Default is today -2
   <path>                        GIT repository path.
 """
 from datetime import datetime, timedelta
@@ -95,12 +97,6 @@ class Summary:
 
 class GitUtils:
     @staticmethod
-    def get_commits_from_yesterday(rep_path, branch) -> List[Commit]:
-        start_date = (datetime.today() - timedelta(days=3)).strftime('%Y-%m-%d 23:59:59')
-        end_date = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
-        return GitUtils.get_commits_between(rep_path, branch, start_date, end_date)
-
-    @staticmethod
     def get_commits_between(rep_path, branch, since, after) -> List[Commit]:
         _commits = []
         _repo = Repo(rep_path)
@@ -124,8 +120,8 @@ class GitUtils:
         return _summaries_by_user
 
 
-def show_changes_from_yesterday(path, branch, pattern, deep):
-    commits = GitUtils.get_commits_from_yesterday(path, branch)
+def show(path, branch, pattern, deep, since, after):
+    commits = GitUtils.get_commits_between(path, branch, since, after)
     changes_by_user = GitUtils.group_by_user(commits, pattern, deep)
     table = [
         [key, changes_by_user[key].show(), changes_by_user[key].msg(), changes_by_user[key].hashes()]
@@ -141,4 +137,14 @@ if __name__ == '__main__':
     _branch = arguments['--branch']
     _issue_pattern = re.compile(arguments['--issue'])
     _deep = int(arguments['--deep'])
-    show_changes_from_yesterday(_path, _branch, _issue_pattern, _deep)
+    _since = arguments['--since']
+    _after = arguments['--after']
+    if _since is None:
+        _start_date = (datetime.today() - timedelta(days=2)).strftime('%Y-%m-%d 00:00:00')
+    else:
+        _start_date = datetime.strptime(_since, '%Y-%m-%d')
+    if _after is None:
+        _end_date = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
+    else:
+        _end_date = datetime.strptime(_after, '%Y-%m-%d')
+    show(_path, _branch, _issue_pattern, _deep, _start_date, _end_date)

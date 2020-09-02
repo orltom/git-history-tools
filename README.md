@@ -25,7 +25,5 @@ Options:
   <path>                        GIT repository path.
 ```
 
-## Requirement
-
 ## Disclaimer
 This software is provided as source code under an MIT license (see LICENSE)
