@@ -15,6 +15,7 @@ setuptools.setup(
     description="Group GIT commits by user and show changes in a compact mode",
     url="https://github.com/orltom/git-history-tools",
     long_description=readme,
+    long_description_content_type="text/markdown",
     license=license,
     classifiers=[
         "Development Status :: 3 - Alpha",
