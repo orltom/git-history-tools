@@ -33,5 +33,11 @@ Options:
   <path>                        GIT repository path.
 ```
 
+## Docker
+```
+docker build . -t githistory
+docer run --rm --volume "/my/repo:/tmp/repo" -it githistory --branch master --deep 3 /tmp/rep
+```
+
 ## Disclaimer
 This software is provided as source code under an MIT license (see LICENSE)
