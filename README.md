@@ -14,14 +14,14 @@ pip install git-history-tools
 To run the program requires python version 3.6 or higher and a few libraries must be installed (see requirements.txt).
 
 ```
->>./cli.py --help
-cli.py
+>>./githistory --help
+githistory
 
 Description:
   Group GIT commits by user and show changes in a compact mode
 
 Usage:
-  cli.py [-b <name>] [-i <regex>] [-d <number>] [--since date] [--after date] <path>
+  githistory [-b <name>] [-i <regex>] [-d <number>] [--since date] [--after date] <path>
 
 Options:
   -h --help                     Show this screen.
