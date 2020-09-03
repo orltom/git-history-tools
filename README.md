@@ -5,6 +5,11 @@
 
 Command line tool to group commits by user for a specific time window.
 
+## Installation
+```
+pip install git-history-tools
+```
+
 ## Usage
 To run the program requires python version 3.6 or higher and a few libraries must be installed (see requirements.txt).
 
