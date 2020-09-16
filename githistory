@@ -12,8 +12,8 @@ Options:
   -b --branch <name>            GIT branch name [default: master]
   -i --issue <regex>            Regex pattern which correspond the issue ID. [default: ""]
   -d --deep <number>            change file deep [default: 1]
-  --since <date>                Start date: format (%Y-%m-%d). Default is today -1
-  --after <date>                End date: format (%Y-%m-%d). Default is today -2
+  --since <date>                Start date: format (%Y-%m-%d %H:%M:%S). Default is today -1
+  --after <date>                End date: format (%Y-%m-%d %H:%M:%S). Default is today -2
   <path>                        GIT repository path.
 """
 from datetime import datetime, timedelta
@@ -48,11 +48,13 @@ if __name__ == '__main__':
     _since = arguments['--since']
     _after = arguments['--after']
     if _since is None:
-        _start_date = (datetime.today() - timedelta(days=2)).strftime('%Y-%m-%d 00:00:00')
+        _start_date = (datetime.today() - timedelta(days=2)).strftime('%Y-%m-%d 23:59:59')
     else:
-        _start_date = datetime.strptime(_since, '%Y-%m-%d')
+        _start_date = datetime.strptime(_since, '%Y-%m-%d %H:%M:%S')
     if _after is None:
-        _end_date = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
+        _end_date = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')
     else:
-        _end_date = datetime.strptime(_after, '%Y-%m-%d')
+        _end_date = datetime.strptime(_after, '%Y-%m-%d %H:%M:%S')
+
+    print(f"Changes between {_start_date} and {_end_date}")
     show(_path, _branch, _issue_pattern, _deep, _start_date, _end_date)

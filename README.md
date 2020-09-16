@@ -28,8 +28,8 @@ Options:
   -b --branch <name>            GIT branch name [default: master]
   -i --issue <regex>            Regex pattern which correspond the issue ID. [default: ""]
   -d --deep <number>            change file deep [default: 1]
-  --since <date>                Start date: format (%Y-%m-%d). Default is today -1
-  --after <date>                End date: format (%Y-%m-%d). Default is today -2
+  --since <date>                Start date: format (%Y-%m-%d %H:%M:%S). Default is today -1
+  --after <date>                End date: format (%Y-%m-%d %H:%M:%S). Default is today -2
   <path>                        GIT repository path.
 ```
 
